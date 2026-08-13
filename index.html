@@ -1,0 +1,1594 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Baijid | Personal Space</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Bengali:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        /* =====================================================
+           RESET
+        ===================================================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Inter", "Noto Sans Bengali", sans-serif;
+            background: #020617;
+            color: #f8fafc;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        button,
+        a {
+            font-family: inherit;
+        }
+
+        button {
+            border: 0;
+        }
+
+        /* =====================================================
+           BACKGROUND
+        ===================================================== */
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            z-index: -3;
+
+            background:
+                radial-gradient(
+                    circle at 15% 15%,
+                    rgba(14, 165, 233, 0.15),
+                    transparent 28%
+                ),
+                radial-gradient(
+                    circle at 85% 20%,
+                    rgba(37, 99, 235, 0.12),
+                    transparent 25%
+                ),
+                radial-gradient(
+                    circle at 50% 100%,
+                    rgba(6, 182, 212, 0.10),
+                    transparent 30%
+                );
+        }
+
+        body::after {
+            content: "";
+            position: fixed;
+            inset: 0;
+            z-index: -2;
+            opacity: 0.25;
+
+            background-image:
+                linear-gradient(
+                    rgba(255, 255, 255, 0.025) 1px,
+                    transparent 1px
+                ),
+                linear-gradient(
+                    90deg,
+                    rgba(255, 255, 255, 0.025) 1px,
+                    transparent 1px
+                );
+
+            background-size: 50px 50px;
+
+            mask-image: linear-gradient(
+                to bottom,
+                black,
+                transparent
+            );
+        }
+
+        /* =====================================================
+           HEADER
+        ===================================================== */
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 14px 20px;
+        }
+
+        nav {
+            width: min(1180px, 100%);
+            height: 66px;
+            margin: auto;
+            padding: 0 14px 0 20px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+
+            background: rgba(2, 6, 23, 0.72);
+            border: 1px solid rgba(148, 163, 184, 0.12);
+            border-radius: 22px;
+
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+
+            box-shadow:
+                0 15px 50px rgba(0, 0, 0, 0.25),
+                inset 0 1px rgba(255, 255, 255, 0.04);
+        }
+
+        /* Logo */
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            color: #fff;
+            font-size: 20px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            white-space: nowrap;
+        }
+
+        .logo i {
+            width: 38px;
+            height: 38px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            color: #fff;
+            background: linear-gradient(
+                135deg,
+                #06b6d4,
+                #2563eb
+            );
+
+            border-radius: 12px;
+
+            box-shadow:
+                0 0 25px rgba(6, 182, 212, 0.25);
+        }
+
+        /* Navigation */
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+
+            list-style: none;
+            padding: 5px;
+
+            background: rgba(15, 23, 42, 0.65);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 16px;
+        }
+
+        .nav-links a {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+
+            padding: 9px 13px;
+
+            color: #94a3b8;
+            text-decoration: none;
+
+            border-radius: 11px;
+
+            font-size: 13px;
+            font-weight: 600;
+
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        .nav-links a i {
+            font-size: 12px;
+        }
+
+        .nav-links a:hover {
+            color: #fff;
+            background: rgba(56, 189, 248, 0.08);
+        }
+
+        .nav-links a.active {
+            color: #fff;
+            background: linear-gradient(
+                135deg,
+                #0284c7,
+                #2563eb
+            );
+
+            box-shadow:
+                0 5px 20px rgba(37, 99, 235, 0.25);
+        }
+
+        /* Contact */
+
+        .btn-contact {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+
+            padding: 10px 16px;
+
+            color: #fff;
+            background: linear-gradient(
+                135deg,
+                #0284c7,
+                #2563eb
+            );
+
+            border-radius: 13px;
+            text-decoration: none;
+
+            font-size: 13px;
+            font-weight: 700;
+
+            white-space: nowrap;
+
+            box-shadow:
+                0 8px 25px rgba(37, 99, 235, 0.25);
+
+            transition: 0.3s;
+        }
+
+        .btn-contact:hover {
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 12px 30px rgba(37, 99, 235, 0.4);
+        }
+
+        /* =====================================================
+           MAIN
+        ===================================================== */
+
+        .container {
+            width: min(1180px, calc(100% - 40px));
+            margin: auto;
+            padding: 145px 0 80px;
+        }
+
+        .page-section {
+            display: none;
+            animation: pageIn 0.5s ease;
+        }
+
+        .page-section.active {
+            display: block;
+        }
+
+        @keyframes pageIn {
+            from {
+                opacity: 0;
+                transform: translateY(18px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* =====================================================
+           HERO
+        ===================================================== */
+
+        .hero-grid {
+            min-height: 540px;
+
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            align-items: center;
+            gap: 70px;
+        }
+
+        .badge-greeting {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+
+            padding: 8px 14px;
+
+            color: #67e8f9;
+            background: rgba(6, 182, 212, 0.07);
+
+            border: 1px solid rgba(34, 211, 238, 0.18);
+            border-radius: 30px;
+
+            font-size: 13px;
+            font-weight: 600;
+
+            margin-bottom: 22px;
+        }
+
+        .badge-greeting i {
+            color: #22d3ee;
+        }
+
+        .hero-title {
+            margin-bottom: 15px;
+
+            color: #fff;
+
+            font-size: clamp(44px, 6vw, 72px);
+            line-height: 1.05;
+            letter-spacing: -3px;
+            font-weight: 800;
+        }
+
+        .hero-title span {
+            background: linear-gradient(
+                90deg,
+                #38bdf8,
+                #60a5fa,
+                #22d3ee
+            );
+
+            -webkit-background-clip: text;
+            background-clip: text;
+
+            color: transparent;
+        }
+
+        .hero-subtitle {
+            margin-bottom: 18px;
+
+            color: #cbd5e1;
+
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .hero-desc {
+            max-width: 600px;
+            margin-bottom: 28px;
+
+            color: #94a3b8;
+
+            font-size: 15px;
+            line-height: 1.9;
+        }
+
+        /* Hero Buttons */
+
+        .hero-btns {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+
+            margin-bottom: 28px;
+        }
+
+        .btn-primary,
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+
+            padding: 12px 19px;
+
+            border-radius: 13px;
+
+            font-size: 13px;
+            font-weight: 700;
+
+            text-decoration: none;
+            cursor: pointer;
+
+            transition: 0.3s;
+        }
+
+        .btn-primary {
+            color: #fff;
+
+            background: linear-gradient(
+                135deg,
+                #0284c7,
+                #2563eb
+            );
+
+            box-shadow:
+                0 10px 30px rgba(37, 99, 235, 0.25);
+        }
+
+        .btn-secondary {
+            color: #e2e8f0;
+            background: rgba(15, 23, 42, 0.7);
+
+            border: 1px solid rgba(148, 163, 184, 0.15);
+        }
+
+        .btn-primary:hover,
+        .btn-secondary:hover {
+            transform: translateY(-3px);
+        }
+
+        /* Social */
+
+        .social-icons {
+            display: flex;
+            gap: 9px;
+        }
+
+        .social-icon {
+            width: 39px;
+            height: 39px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            color: #94a3b8;
+            background: rgba(15, 23, 42, 0.75);
+
+            border: 1px solid rgba(148, 163, 184, 0.12);
+            border-radius: 12px;
+
+            text-decoration: none;
+
+            transition: 0.3s;
+        }
+
+        .social-icon:hover {
+            color: #fff;
+            background: #0284c7;
+
+            transform: translateY(-4px);
+
+            box-shadow:
+                0 10px 25px rgba(2, 132, 199, 0.3);
+        }
+
+        /* =====================================================
+           PROFILE
+        ===================================================== */
+
+        .hero-img-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .profile-frame {
+            position: relative;
+
+            width: 310px;
+            height: 310px;
+
+            padding: 7px;
+
+            border-radius: 50%;
+
+            background: linear-gradient(
+                135deg,
+                #22d3ee,
+                #2563eb,
+                #7c3aed
+            );
+
+            box-shadow:
+                0 0 0 10px rgba(56, 189, 248, 0.025),
+                0 0 70px rgba(37, 99, 235, 0.25);
+
+            animation: float 5s ease-in-out infinite;
+        }
+
+        .profile-frame::before {
+            content: "";
+
+            position: absolute;
+            inset: -14px;
+
+            border: 1px solid rgba(56, 189, 248, 0.12);
+            border-radius: 50%;
+        }
+
+        .profile-frame img {
+            width: 100%;
+            height: 100%;
+
+            display: block;
+
+            object-fit: cover;
+
+            border: 5px solid #020617;
+            border-radius: 50%;
+        }
+
+        @keyframes float {
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        /* Quote */
+
+        .quote-card {
+            width: min(360px, 100%);
+
+            margin-top: 30px;
+            padding: 17px 20px;
+
+            text-align: center;
+
+            background: rgba(15, 23, 42, 0.58);
+
+            border: 1px solid rgba(56, 189, 248, 0.12);
+            border-radius: 17px;
+
+            backdrop-filter: blur(15px);
+
+            box-shadow:
+                0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .quote-card p {
+            color: #cbd5e1;
+            font-size: 14px;
+        }
+
+        .quote-card small {
+            display: block;
+
+            margin-top: 4px;
+
+            color: #64748b;
+        }
+
+        /* =====================================================
+           SECTION TITLE
+        ===================================================== */
+
+        .section-title-center {
+            margin-bottom: 30px;
+
+            text-align: center;
+
+            color: #fff;
+
+            font-size: 30px;
+            letter-spacing: -1px;
+        }
+
+        .section-title-center span {
+            color: #38bdf8;
+        }
+
+        /* =====================================================
+           LATEST PHOTOS + VIDEOS
+        ===================================================== */
+
+        .latest-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 35px;
+        }
+
+        .latest-box {
+            min-width: 0;
+        }
+
+        .latest-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+
+            margin-bottom: 15px;
+        }
+
+        .latest-header h2 {
+            color: #fff;
+
+            font-size: 28px;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+        .latest-header h2 span {
+            color: #0ea5e9;
+        }
+
+        .latest-header button {
+            padding: 8px 14px;
+
+            color: #fff;
+            background: rgba(2, 132, 199, 0.08);
+
+            border: 1px solid rgba(56, 189, 248, 0.6);
+            border-radius: 20px;
+
+            font-size: 12px;
+
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .latest-header button:hover {
+            background: #0284c7;
+            transform: translateX(3px);
+        }
+
+        /* Latest Photos */
+
+        .latest-photos {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+
+        .latest-photo {
+            height: 190px;
+
+            overflow: hidden;
+
+            background: #020617;
+
+            border: 1px solid rgba(56, 189, 248, 0.35);
+            border-radius: 15px;
+        }
+
+        .latest-photo img {
+            width: 100%;
+            height: 100%;
+
+            display: block;
+
+            object-fit: cover;
+
+            transition: 0.5s;
+        }
+
+        .latest-photo:hover img {
+            transform: scale(1.08);
+        }
+
+        /* Latest Video */
+
+        .latest-video {
+            position: relative;
+
+            height: 190px;
+
+            overflow: hidden;
+
+            background: #020617;
+
+            border: 1px solid rgba(56, 189, 248, 0.4);
+            border-radius: 15px;
+        }
+
+        .latest-video iframe {
+            width: 100%;
+            height: 100%;
+
+            display: block;
+
+            border: 0;
+        }
+
+        .video-overlay {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+
+            display: flex;
+            align-items: center;
+            gap: 14px;
+
+            padding: 20px;
+
+            background: linear-gradient(
+                transparent,
+                rgba(0, 0, 0, 0.9)
+            );
+
+            pointer-events: none;
+        }
+
+        .play-button {
+            width: 48px;
+            height: 48px;
+
+            flex-shrink: 0;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            color: #fff;
+            background: rgba(2, 132, 199, 0.8);
+
+            border: 2px solid #fff;
+            border-radius: 50%;
+        }
+
+        .video-overlay h3 {
+            color: #fff;
+            font-size: 19px;
+        }
+
+        .video-overlay p {
+            margin-top: 2px;
+            color: #cbd5e1;
+            font-size: 12px;
+        }
+
+        /* =====================================================
+           GALLERY PAGES
+        ===================================================== */
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .card-box {
+            overflow: hidden;
+
+            background: rgba(15, 23, 42, 0.72);
+
+            border: 1px solid rgba(148, 163, 184, 0.10);
+            border-radius: 18px;
+
+            box-shadow:
+                0 15px 40px rgba(0, 0, 0, 0.15);
+
+            transition: 0.35s;
+        }
+
+        .card-box:hover {
+            transform: translateY(-6px);
+
+            border-color: rgba(56, 189, 248, 0.25);
+
+            box-shadow:
+                0 20px 50px rgba(0, 0, 0, 0.25);
+        }
+
+        .card-box img {
+            width: 100%;
+            height: 250px;
+
+            display: block;
+
+            object-fit: cover;
+
+            transition: 0.5s;
+        }
+
+        .card-box:hover img {
+            transform: scale(1.04);
+        }
+
+        .card-box iframe {
+            width: 100%;
+            height: 250px;
+
+            display: block;
+
+            border: 0;
+        }
+
+        .card-info {
+            padding: 16px 17px;
+        }
+
+        .card-info h4 {
+            color: #f8fafc;
+            font-size: 14px;
+        }
+
+        /* =====================================================
+           ABOUT + NOTES
+        ===================================================== */
+
+        .content-card {
+            padding: 28px;
+
+            background: rgba(15, 23, 42, 0.7);
+
+            border: 1px solid rgba(56, 189, 248, 0.10);
+            border-radius: 20px;
+
+            box-shadow:
+                0 20px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .content-card h3 {
+            color: #fff;
+            font-size: 21px;
+        }
+
+        .content-card h4 {
+            color: #38bdf8;
+        }
+
+        .content-card p {
+            color: #94a3b8;
+            line-height: 1.9;
+        }
+
+        #notes .gallery-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        /* =====================================================
+           FOOTER
+        ===================================================== */
+
+        footer {
+            padding: 35px 20px;
+
+            text-align: center;
+
+            background: rgba(2, 6, 23, 0.6);
+
+            border-top: 1px solid rgba(148, 163, 184, 0.08);
+        }
+
+        footer p {
+            color: #64748b;
+            font-size: 12px;
+        }
+
+        footer span {
+            color: #38bdf8;
+        }
+
+        /* =====================================================
+           TABLET
+        ===================================================== */
+
+        @media (max-width: 900px) {
+
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 50px;
+
+                text-align: center;
+            }
+
+            .hero-img-box {
+                order: -1;
+            }
+
+            .hero-desc {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .hero-btns,
+            .social-icons {
+                justify-content: center;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .latest-section {
+                grid-template-columns: 1fr;
+                gap: 35px;
+            }
+
+            .nav-links a {
+                padding: 9px;
+            }
+
+            .nav-links a span {
+                display: none;
+            }
+        }
+
+        /* =====================================================
+           MOBILE
+        ===================================================== */
+
+        @media (max-width: 650px) {
+
+            header {
+                padding: 9px 10px;
+            }
+
+            nav {
+                height: 58px;
+                padding: 0 9px 0 12px;
+
+                border-radius: 17px;
+            }
+
+            .logo {
+                font-size: 16px;
+            }
+
+            .logo i {
+                width: 32px;
+                height: 32px;
+
+                border-radius: 9px;
+            }
+
+            .nav-links {
+                position: absolute;
+
+                top: 72px;
+                left: 10px;
+                right: 10px;
+
+                justify-content: space-around;
+
+                padding: 5px;
+
+                background: rgba(2, 6, 23, 0.92);
+
+                border-radius: 16px;
+
+                backdrop-filter: blur(20px);
+            }
+
+            .nav-links a {
+                flex-direction: column;
+                gap: 3px;
+
+                padding: 8px 12px;
+
+                font-size: 10px;
+            }
+
+            .nav-links a span {
+                display: block;
+            }
+
+            .btn-contact {
+                padding: 9px 11px;
+                font-size: 11px;
+            }
+
+            .container {
+                width: min(100% - 24px, 1180px);
+                padding-top: 155px;
+            }
+
+            .hero-title {
+                font-size: 46px;
+                letter-spacing: -2px;
+            }
+
+            .hero-subtitle {
+                font-size: 17px;
+            }
+
+            .hero-desc {
+                font-size: 13px;
+            }
+
+            .profile-frame {
+                width: 245px;
+                height: 245px;
+            }
+
+            .latest-header h2 {
+                font-size: 23px;
+            }
+
+            .latest-photos {
+                gap: 8px;
+            }
+
+            .latest-photo {
+                height: 145px;
+            }
+
+            .latest-video {
+                height: 210px;
+            }
+
+            .gallery-grid,
+            #notes .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .card-box img,
+            .card-box iframe {
+                height: 220px;
+            }
+
+            .section-title-center {
+                font-size: 25px;
+            }
+        }
+
+        /* =====================================================
+           SMALL MOBILE
+        ===================================================== */
+
+        @media (max-width: 380px) {
+
+            .nav-links a {
+                padding: 7px 8px;
+            }
+
+            .nav-links a span {
+                font-size: 9px;
+            }
+
+            .btn-contact {
+                display: none;
+            }
+
+            .hero-title {
+                font-size: 40px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- =====================================================
+         HEADER
+    ===================================================== -->
+
+    <header>
+        <nav>
+
+            <div class="logo">
+                <i class="fa-solid fa-crown"></i>
+                Baijid.
+            </div>
+
+            <ul class="nav-links">
+
+                <li>
+                    <a class="nav-item active"
+                       onclick="showPage(event, 'home')">
+                        <i class="fa-solid fa-house"></i>
+                        <span>Home</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a class="nav-item"
+                       onclick="showPage(event, 'images')">
+                        <i class="fa-solid fa-image"></i>
+                        <span>Images</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a class="nav-item"
+                       onclick="showPage(event, 'videos')">
+                        <i class="fa-solid fa-video"></i>
+                        <span>Videos</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a class="nav-item"
+                       onclick="showPage(event, 'about')">
+                        <i class="fa-solid fa-user"></i>
+                        <span>About</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a class="nav-item"
+                       onclick="showPage(event, 'notes')">
+                        <i class="fa-solid fa-note-sticky"></i>
+                        <span>Notes</span>
+                    </a>
+                </li>
+
+            </ul>
+
+            <a href="#"
+               class="btn-contact"
+               onclick="contactMe(event)">
+                <i class="fa-regular fa-paper-plane"></i>
+                Contact
+            </a>
+
+        </nav>
+    </header>
+
+    <main class="container">
+
+        <!-- ================= HOME ================= -->
+
+        <section id="home" class="page-section active">
+
+            <div class="hero-grid">
+
+                <div>
+
+                    <div class="badge-greeting">
+                        <i class="fa-solid fa-hand"></i>
+                        Assalamu Alaikum
+                    </div>
+
+                    <h1 class="hero-title">
+                        I'm <span>Baijid</span>
+                    </h1>
+
+                    <div class="hero-subtitle">
+                        Student & Learner
+                    </div>
+
+                    <p class="hero-desc">
+                        এটি আমার ওয়েবসাইট এখানে আমার ছবি, ভিডিও,
+                        আমার সম্পর্কে তথ্য এবং কিছু বাণী দেখতে পারবেন।
+                    </p>
+
+                    <div class="hero-btns">
+
+                        <a class="btn-primary"
+                           onclick="showPage(null, 'images')">
+                            <i class="fa-regular fa-image"></i>
+                            View Images
+                        </a>
+
+                        <a class="btn-secondary"
+                           onclick="showPage(null, 'videos')">
+                            <i class="fa-solid fa-play"></i>
+                            Watch Videos
+                        </a>
+
+                    </div>
+
+                    <div class="social-icons">
+
+                        <a href="#"
+                           class="social-icon"
+                           aria-label="Facebook">
+                            <i class="fa-brands fa-facebook-f"></i>
+                        </a>
+
+                        <a href="#"
+                           class="social-icon"
+                           aria-label="YouTube">
+                            <i class="fa-brands fa-youtube"></i>
+                        </a>
+
+                        <a href="#"
+                           class="social-icon"
+                           aria-label="Instagram">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+
+                        <a href="#"
+                           class="social-icon"
+                           aria-label="GitHub">
+                            <i class="fa-brands fa-github"></i>
+                        </a>
+
+                        <a href="#"
+                           class="social-icon"
+                           aria-label="Telegram">
+                            <i class="fa-brands fa-telegram"></i>
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <!-- PROFILE -->
+
+                <div class="hero-img-box">
+
+                    <div class="profile-frame">
+
+                        <img
+                            src="https://i.postimg.cc/MpPBq2Pg/Gemini-Generated-Image-quc65wquc65wquc6.png"
+                            alt="Baijid Profile">
+
+                    </div>
+
+                    <div class="quote-card">
+
+                        <p>
+                            <i>"Knowledge is Light."</i>
+                        </p>
+
+                        <small>
+                            — Islamic Quote
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= MY SPACE ================= -->
+
+            <h2 class="section-title-center">
+                My <span>Space</span>
+            </h2>
+
+            <div class="latest-section">
+
+                <!-- PHOTOS -->
+
+                <div class="latest-box">
+
+                    <div class="latest-header">
+
+                        <h2>
+                            Latest <span>Photos</span>
+                        </h2>
+
+                        <button onclick="showPage(null, 'images')">
+                            View All
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+
+                    </div>
+
+                    <div class="latest-photos">
+
+                        <div class="latest-photo">
+                            <img
+                                src="https://i.postimg.cc/MpPBq2Pg/Gemini-Generated-Image-quc65wquc65wquc6.png"
+                                alt="Baijid Photo">
+                        </div>
+
+                        <div class="latest-photo">
+                            <img
+                                src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e"
+                                alt="Nature View">
+                        </div>
+
+                        <div class="latest-photo">
+                            <img
+                                src="https://images.unsplash.com/photo-1519681393784-d120267933ba"
+                                alt="Starry Night">
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- VIDEOS -->
+
+                <div class="latest-box">
+
+                    <div class="latest-header">
+
+                        <h2>
+                            Latest <span>Videos</span>
+                        </h2>
+
+                        <button onclick="showPage(null, 'videos')">
+                            View All
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+
+                    </div>
+
+                    <div class="latest-video">
+
+                        <iframe
+                            src="https://www.youtube.com/embed/tgbNymZ7vqY"
+                            title="Latest Video"
+                            allowfullscreen>
+                        </iframe>
+
+                        <div class="video-overlay">
+
+                            <div class="play-button">
+                                <i class="fa-solid fa-play"></i>
+                            </div>
+
+                            <div>
+                                <h3>My Journey</h3>
+                                <p>Learning & Growing</p>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= IMAGES ================= -->
+
+        <section id="images" class="page-section">
+
+            <h2 class="section-title-center">
+                My <span>Gallery</span>
+            </h2>
+
+            <div class="gallery-grid">
+
+                <div class="card-box">
+
+                    <img
+                        src="https://i.postimg.cc/MpPBq2Pg/Gemini-Generated-Image-quc65wquc65wquc6.png"
+                        alt="Baijid Portrait">
+
+                    <div class="card-info">
+                        <h4>My Portrait</h4>
+                    </div>
+
+                </div>
+
+
+                <div class="card-box">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e"
+                        alt="Nature View">
+
+                    <div class="card-info">
+                        <h4>Nature View</h4>
+                    </div>
+
+                </div>
+
+
+                <div class="card-box">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1519681393784-d120267933ba"
+                        alt="Starry Night">
+
+                    <div class="card-info">
+                        <h4>Starry Night</h4>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= VIDEOS ================= -->
+
+        <section id="videos" class="page-section">
+
+            <h2 class="section-title-center">
+                My <span>Videos</span>
+            </h2>
+
+            <div class="gallery-grid">
+
+                <div class="card-box">
+
+                    <iframe
+                        src="https://www.youtube.com/embed/tgbNymZ7vqY"
+                        title="Learning Journey"
+                        allowfullscreen>
+                    </iframe>
+
+                    <div class="card-info">
+                        <h4>Learning Journey</h4>
+                    </div>
+
+                </div>
+
+
+                <div class="card-box">
+
+                    <iframe
+                        src="https://www.youtube.com/embed/tgbNymZ7vqY"
+                        title="My Thoughts"
+                        allowfullscreen>
+                    </iframe>
+
+                    <div class="card-info">
+                        <h4>My Thoughts</h4>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= ABOUT ================= -->
+
+        <section id="about" class="page-section">
+
+            <h2 class="section-title-center">
+                About <span>Me</span>
+            </h2>
+
+            <div class="content-card">
+
+                <h3>
+                    Hello, I'm Baijid! 👋
+                </h3>
+
+                <p style="margin-top: 12px;">
+                    আমি বাইজিদ আমি জামিয়া মাদানিয়া বারিধারা মাদ্রাসাই পরি আমি আবুল বাশার সাহেবের গ্রুপে পরছি
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= NOTES ================= -->
+
+        <section id="notes" class="page-section">
+
+            <h2 class="section-title-center">
+                My <span>Notes</span>
+            </h2>
+
+            <div class="gallery-grid">
+
+                <div class="content-card">
+
+                    <h4>
+                        <i class="fa-solid fa-bookmark"></i>
+                       কিছু কথা,
+                    </h4>
+
+                    <p style="margin-top: 10px;">
+                        স্বপ্ন দেখো, পরিশ্রম করো, সফলতা একদিন আসবেই।
+                    </p>
+
+                </div>
+
+
+                <div class="content-card">
+
+                    <h4>
+                        <i class="fa-solid fa-bookmark"></i>
+                        কিছু কথা,
+                    </h4>
+
+                    <p style="margin-top: 10px;">
+                        নিজেকে বদলাও, নিজের ভবিষ্যৎ বদলে যাবে।
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =====================================================
+         FOOTER
+    ===================================================== -->
+
+    <footer>
+
+        <p>
+            © 2026 <span>Baijid</span>. All rights reserved.
+        </p>
+
+    </footer>
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ===================================================== -->
+
+    <script>
+
+        function showPage(event, pageId) {
+
+            // Hide all pages
+            document
+                .querySelectorAll(".page-section")
+                .forEach(section => {
+                    section.classList.remove("active");
+                });
+
+
+            // Show selected page
+            const target = document.getElementById(pageId);
+
+            if (target) {
+                target.classList.add("active");
+            }
+
+
+            // Remove active navigation
+            document
+                .querySelectorAll(".nav-item")
+                .forEach(item => {
+                    item.classList.remove("active");
+                });
+
+
+            // Set active navigation
+            if (event && event.currentTarget) {
+
+                event.currentTarget.classList.add("active");
+
+            } else {
+
+                document
+                    .querySelectorAll(".nav-item")
+                    .forEach(item => {
+
+                        const action =
+                            item.getAttribute("onclick") || "";
+
+                        if (
+                            action.includes(
+                                "'" + pageId + "'"
+                            )
+                        ) {
+                            item.classList.add("active");
+                        }
+
+                    });
+
+            }
+
+
+            // Scroll to top
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+
+        }
+
+
+        // Contact button
+        function contactMe(event) {
+
+            event.preventDefault();
+
+            alert(
+                "এখানে তোমার Facebook, WhatsApp অথবা Email link বসাতে পারো।"
+            );
+
+        }
+
+    </script>
+
+</body>
+</html>
